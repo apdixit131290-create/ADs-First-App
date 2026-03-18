@@ -18,10 +18,3 @@ export default async function handler(req, res) {
     res.status(500).json({ error: 'API call failed' });
   }
 }
-```
-
-Save with **Cmd + S**, then push:
-```
-git add .
-git commit -m "fix api function"
-git push
