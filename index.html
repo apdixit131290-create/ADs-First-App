@@ -1,1 +1,191 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner Intel — Condense by Zeliot</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F5F2ED;
+    --ink: #1A1814;
+    --ink-soft: #6B6660;
+    --card-bg: #FFFFFF;
+    --border: #E0DDD8;
+    --tag-bg: #EDE9E3;
+  }
+  body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 300; min-height: 100vh; }
+  header { padding: 48px 64px 32px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; }
+  .logo-block h1 { font-family: 'DM Serif Display', serif; font-size: 28px; letter-spacing: -0.5px; line-height: 1; }
+  .logo-block p { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); margin-top: 6px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .header-tag { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); letter-spacing: 0.05em; text-transform: uppercase; text-align: right; line-height: 1.6; }
+  main { max-width: 1100px; margin: 0 auto; padding: 48px 64px; }
+  .platform-section { margin-bottom: 72px; }
+  .platform-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .platform-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .platform-header h2 { font-family: 'DM Serif Display', serif; font-size: 22px; letter-spacing: -0.3px; }
+  .platform-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); margin-left: auto; letter-spacing: 0.05em; }
+  .partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+  .partner-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 20px 24px; cursor: pointer; transition: all 0.2s ease; }
+  .partner-card:hover { border-color: var(--ink); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+  .partner-card.active { border-color: var(--ink); grid-column: 1 / -1; }
+  .partner-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .partner-name { font-size: 15px; font-weight: 500; letter-spacing: -0.2px; }
+  .partner-category { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--ink-soft); background: var(--tag-bg); padding: 3px 8px; border-radius: 2px; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+  .expand-icon { font-size: 18px; color: var(--ink-soft); transition: transform 0.2s ease; margin-left: 8px; flex-shrink: 0; }
+  .partner-card.active .expand-icon { transform: rotate(45deg); }
+  .partner-content { display: none; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .partner-card.active .partner-content { display: block; }
+  .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .content-block h4 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 12px; }
+  .content-block p { font-size: 14px; line-height: 1.7; color: var(--ink); }
+  .loading-state { display: flex; align-items: center; gap: 10px; color: var(--ink-soft); font-size: 13px; }
+  .spinner { width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--ink); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error-state { color: #C0392B; font-size: 13px; font-family: 'DM Mono', monospace; }
+  .approach-block { background: var(--tag-bg); border-radius: 4px; padding: 16px 20px; }
+  footer { text-align: center; padding: 32px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); letter-spacing: 0.05em; border-top: 1px solid var(--border); }
+  @media (max-width: 768px) { header, main { padding: 32px 24px; } .content-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo-block">
+    <h1>Partner Intel</h1>
+    <p>Condense by Zeliot — GTM Intelligence</p>
+  </div>
+  <div class="header-tag">Confluent &amp; Databricks<br>Ecosystem Map</div>
+</header>
+<main>
+  <div class="platform-section">
+    <div class="platform-header">
+      <div class="platform-dot" style="background:#E8380D"></div>
+      <h2>Confluent Partners</h2>
+      <span class="platform-count" id="confluent-count"></span>
+    </div>
+    <div class="partners-grid" id="confluent-grid"></div>
+  </div>
+  <div class="platform-section">
+    <div class="platform-header">
+      <div class="platform-dot" style="background:#FF6B35"></div>
+      <h2>Databricks Partners</h2>
+      <span class="platform-count" id="databricks-count"></span>
+    </div>
+    <div class="partners-grid" id="databricks-grid"></div>
+  </div>
+</main>
+<footer>Built for Zeliot Partnerships — Powered by Claude</footer>
+<script>
+const CONDENSE_CONTEXT = `Condense is a streaming-native data platform by Zeliot that enables organizations to build and run domain-ready pipelines in real time within their own cloud using a BYOC (Bring Your Own Cloud) architecture. It eliminates data movement while ensuring full control and security. It provides prebuilt transforms and stateful streaming execution to process continuous event data with low latency. It uses a vCPU-hour pricing model so teams only pay for actual compute usage, making it a cost-efficient and production-grade alternative to traditional batch or micro-batch data systems.`;
+
+const PARTNERS = {
+  confluent: [
+    { name: "Snowflake", category: "Data Warehouse" },
+    { name: "MongoDB", category: "Database" },
+    { name: "Elastic", category: "Search & Analytics" },
+    { name: "Splunk", category: "Observability" },
+    { name: "Databricks", category: "Data & AI" },
+    { name: "dbt Labs", category: "Transformation" },
+    { name: "AWS", category: "Cloud" },
+    { name: "Google Cloud", category: "Cloud" },
+    { name: "Microsoft Azure", category: "Cloud" },
+    { name: "Fivetran", category: "Data Integration" },
+    { name: "Datadog", category: "Monitoring" },
+    { name: "HashiCorp", category: "Infrastructure" },
+  ],
+  databricks: [
+    { name: "Snowflake", category: "Data Warehouse" },
+    { name: "Fivetran", category: "Data Integration" },
+    { name: "dbt Labs", category: "Transformation" },
+    { name: "Confluent", category: "Streaming" },
+    { name: "Tableau", category: "BI & Analytics" },
+    { name: "Power BI", category: "BI & Analytics" },
+    { name: "AWS", category: "Cloud" },
+    { name: "Google Cloud", category: "Cloud" },
+    { name: "Microsoft Azure", category: "Cloud" },
+    { name: "Informatica", category: "Data Management" },
+    { name: "Anomalo", category: "Data Quality" },
+    { name: "Atlan", category: "Data Catalog" },
+  ]
+};
+
+let activeCard = null;
+const cache = {};
+
+function renderPartners(platform, containerId, countId) {
+  const grid = document.getElementById(containerId);
+  const countEl = document.getElementById(countId);
+  const partners = PARTNERS[platform];
+  countEl.textContent = partners.length + ' partners';
+  partners.forEach(partner => {
+    const card = document.createElement('div');
+    card.className = 'partner-card';
+    card.innerHTML = `
+      <div class="partner-top">
+        <span class="partner-name">${partner.name}</span>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="partner-category">${partner.category}</span>
+          <span class="expand-icon">+</span>
+        </div>
+      </div>
+      <div class="partner-content">
+        <div class="content-grid">
+          <div class="content-block">
+            <h4>Partnership Overview</h4>
+            <div class="overview-text"><div class="loading-state"><div class="spinner"></div>Fetching intelligence…</div></div>
+          </div>
+          <div class="content-block">
+            <h4>Approach Strategy for Condense</h4>
+            <div class="approach-block"><div class="loading-state"><div class="spinner"></div>Generating strategy…</div></div>
+          </div>
+        </div>
+      </div>`;
+    card.addEventListener('click', () => toggleCard(card, platform, partner.name));
+    grid.appendChild(card);
+  });
+}
+
+async function toggleCard(card, platform, partnerName) {
+  if (card.classList.contains('active')) { card.classList.remove('active'); activeCard = null; return; }
+  if (activeCard) activeCard.classList.remove('active');
+  card.classList.add('active');
+  activeCard = card;
+  const cacheKey = platform + ':' + partnerName;
+  if (cache[cacheKey]) { renderContent(card, cache[cacheKey]); return; }
+  await fetchIntel(card, platform, partnerName, cacheKey);
+}
+
+async function fetchIntel(card, platform, partnerName, cacheKey) {
+  const platformLabel = platform === 'confluent' ? 'Confluent' : 'Databricks';
+  const prompt = `You are a B2B partnership intelligence assistant.\n\nContext about Condense by Zeliot:\n${CONDENSE_CONTEXT}\n\nTask: Provide two things about the partnership between ${platformLabel} and ${partnerName}:\n\n1. PARTNERSHIP_OVERVIEW: In 3-4 sentences, explain what the ${platformLabel} + ${partnerName} partnership is about. What do they jointly offer? Who is the target customer? What is the integration or go-to-market angle?\n\n2. APPROACH_STRATEGY: In 3-4 sentences, give a specific, actionable strategy for how the Head of Partnerships at Zeliot should approach ${partnerName} (via their ${platformLabel} partnership team or directly) to position Condense as complementary. What angle, what pain point, what hook?\n\nRespond ONLY in this JSON format, no markdown, no backticks:\n{"overview": "...", "strategy": "..."}`;
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000, messages: [{ role: "user", content: prompt }] })
+    });
+    const data = await response.json();
+    const text = data.content.map(i => i.text || "").join("").trim();
+    const parsed = JSON.parse(text);
+    cache[cacheKey] = parsed;
+    renderContent(card, parsed);
+  } catch(err) { renderError(card); }
+}
+
+function renderContent(card, data) {
+  card.querySelector('.overview-text').innerHTML = '<p>' + data.overview + '</p>';
+  card.querySelector('.approach-block').innerHTML = '<p>' + data.strategy + '</p>';
+}
+
+function renderError(card) {
+  const msg = '<span class="error-state">Failed to load. Try clicking again.</span>';
+  card.querySelector('.overview-text').innerHTML = msg;
+  card.querySelector('.approach-block').innerHTML = msg;
+}
+
+renderPartners('confluent', 'confluent-grid', 'confluent-count');
+renderPartners('databricks', 'databricks-grid', 'databricks-count');
+</script>
+</body>
+</html>
