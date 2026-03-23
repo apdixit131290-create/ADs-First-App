@@ -22,42 +22,33 @@
   .header-tag { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); letter-spacing: 0.05em; text-transform: uppercase; text-align: right; line-height: 1.6; }
   main { max-width: 1100px; margin: 0 auto; padding: 48px 64px; }
 
-  /* Toolbar */
-  .toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; }
-  .search-input { flex: 1; min-width: 200px; padding: 10px 16px; border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); outline: none; }
+  .toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+  .search-input { flex: 1; padding: 10px 16px; border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); outline: none; }
   .search-input:focus { border-color: var(--ink); }
-  .filter-btn { padding: 10px 16px; border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; color: var(--ink-soft); transition: all 0.15s; }
-  .filter-btn:hover, .filter-btn.active { background: var(--ink); color: #fff; border-color: var(--ink); }
   .add-btn { padding: 10px 20px; border: 1px solid var(--ink); border-radius: 4px; background: var(--ink); color: #fff; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
   .add-btn:hover { background: #333; }
 
-  /* Add partner modal */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 100; align-items: center; justify-content: center; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--card-bg); border-radius: 6px; padding: 32px; width: 420px; max-width: 90vw; }
   .modal h3 { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 24px; }
   .modal label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); display: block; margin-bottom: 6px; }
-  .modal input, .modal select { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); background: var(--bg); outline: none; margin-bottom: 16px; }
-  .modal input:focus, .modal select:focus { border-color: var(--ink); }
+  .modal input { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); background: var(--bg); outline: none; margin-bottom: 16px; }
+  .modal input:focus { border-color: var(--ink); }
   .modal-actions { display: flex; gap: 10px; margin-top: 8px; }
   .modal-confirm { flex: 1; padding: 11px; background: var(--ink); color: #fff; border: none; border-radius: 4px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; }
   .modal-cancel { flex: 1; padding: 11px; background: transparent; color: var(--ink); border: 1px solid var(--border); border-radius: 4px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; }
 
-  /* Partner count */
   .list-meta { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); margin-bottom: 16px; letter-spacing: 0.05em; }
 
-  /* Partner cards */
   .partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
   .partner-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 20px 24px; cursor: pointer; transition: all 0.2s ease; }
   .partner-card:hover { border-color: var(--ink); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
   .partner-card.active { border-color: var(--ink); grid-column: 1 / -1; transform: none; box-shadow: none; }
   .partner-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
   .partner-name { font-size: 15px; font-weight: 500; letter-spacing: -0.2px; }
-  .partner-tags { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+  .partner-tags { display: flex; gap: 6px; align-items: center; }
   .tag { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--ink-soft); background: var(--tag-bg); padding: 3px 8px; border-radius: 2px; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
-  .tag.confluent { background: #FDE8E4; color: #C0290D; }
-  .tag.databricks { background: #FFF0E8; color: #C04A10; }
-  .tag.both { background: #E8EDF5; color: #2B4A8C; }
   .expand-icon { font-size: 18px; color: var(--ink-soft); transition: transform 0.2s ease; flex-shrink: 0; }
   .partner-card.active .expand-icon { transform: rotate(45deg); }
 
@@ -71,7 +62,6 @@
   @keyframes spin { to { transform: rotate(360deg); } }
   .error-state { color: #C0392B; font-size: 13px; font-family: 'DM Mono', monospace; }
   .approach-block { background: var(--tag-bg); border-radius: 4px; padding: 16px 20px; }
-
   .empty-state { text-align: center; padding: 64px; color: var(--ink-soft); font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.05em; }
 
   footer { text-align: center; padding: 32px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); letter-spacing: 0.05em; border-top: 1px solid var(--border); margin-top: 48px; }
@@ -91,10 +81,6 @@
 <main>
   <div class="toolbar">
     <input class="search-input" id="search" type="text" placeholder="Search partners…">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="confluent">Confluent</button>
-    <button class="filter-btn" data-filter="databricks">Databricks</button>
-    <button class="filter-btn" data-filter="both">Both</button>
     <button class="add-btn" id="openModal">+ Add Partner</button>
   </div>
   <div class="list-meta" id="list-meta"></div>
@@ -108,12 +94,8 @@
     <input type="text" id="new-name" placeholder="e.g. Palantir">
     <label>Category</label>
     <input type="text" id="new-category" placeholder="e.g. Data Analytics">
-    <label>Ecosystem</label>
-    <select id="new-ecosystem">
-      <option value="confluent">Confluent</option>
-      <option value="databricks">Databricks</option>
-      <option value="both">Both</option>
-    </select>
+    <label>Ecosystem Context (optional)</label>
+    <input type="text" id="new-ecosystem" placeholder="e.g. Confluent partner via Kafka integration">
     <div class="modal-actions">
       <button class="modal-cancel" id="closeModal">Cancel</button>
       <button class="modal-confirm" id="confirmAdd">Add Partner</button>
@@ -127,34 +109,27 @@
 const CONDENSE_CONTEXT = `Condense is a streaming-native data platform by Zeliot that enables organizations to build and run domain-ready pipelines in real time within their own cloud using a BYOC (Bring Your Own Cloud) architecture. It eliminates data movement while ensuring full control and security. It provides prebuilt transforms and stateful streaming execution to process continuous event data with low latency. It uses a vCPU-hour pricing model so teams only pay for actual compute usage, making it a cost-efficient and production-grade alternative to traditional batch or micro-batch data systems.`;
 
 let partners = [
-  { name: "Snowflake", category: "Data Warehouse", ecosystem: "both" },
-  { name: "MongoDB", category: "Database", ecosystem: "confluent" },
-  { name: "Elastic", category: "Search & Analytics", ecosystem: "confluent" },
-  { name: "Splunk", category: "Observability", ecosystem: "confluent" },
-  { name: "dbt Labs", category: "Transformation", ecosystem: "both" },
-  { name: "AWS", category: "Cloud", ecosystem: "both" },
-  { name: "Google Cloud", category: "Cloud", ecosystem: "both" },
-  { name: "Microsoft Azure", category: "Cloud", ecosystem: "both" },
-  { name: "Fivetran", category: "Data Integration", ecosystem: "both" },
-  { name: "Datadog", category: "Monitoring", ecosystem: "confluent" },
-  { name: "HashiCorp", category: "Infrastructure", ecosystem: "confluent" },
-  { name: "Tableau", category: "BI & Analytics", ecosystem: "databricks" },
-  { name: "Power BI", category: "BI & Analytics", ecosystem: "databricks" },
-  { name: "Informatica", category: "Data Management", ecosystem: "databricks" },
-  { name: "Anomalo", category: "Data Quality", ecosystem: "databricks" },
-  { name: "Atlan", category: "Data Catalog", ecosystem: "databricks" },
+  { name: "Snowflake", category: "Data Warehouse", context: "" },
+  { name: "MongoDB", category: "Database", context: "" },
+  { name: "Elastic", category: "Search & Analytics", context: "" },
+  { name: "Splunk", category: "Observability", context: "" },
+  { name: "dbt Labs", category: "Transformation", context: "" },
+  { name: "AWS", category: "Cloud", context: "" },
+  { name: "Google Cloud", category: "Cloud", context: "" },
+  { name: "Microsoft Azure", category: "Cloud", context: "" },
+  { name: "Fivetran", category: "Data Integration", context: "" },
+  { name: "Datadog", category: "Monitoring", context: "" },
+  { name: "HashiCorp", category: "Infrastructure", context: "" },
+  { name: "Tableau", category: "BI & Analytics", context: "" },
+  { name: "Power BI", category: "BI & Analytics", context: "" },
+  { name: "Informatica", category: "Data Management", context: "" },
+  { name: "Anomalo", category: "Data Quality", context: "" },
+  { name: "Atlan", category: "Data Catalog", context: "" },
 ];
 
 let activeCard = null;
 const cache = {};
-let currentFilter = 'all';
 let currentSearch = '';
-
-function ecosystemLabel(e) {
-  if (e === 'confluent') return '<span class="tag confluent">Confluent</span>';
-  if (e === 'databricks') return '<span class="tag databricks">Databricks</span>';
-  return '<span class="tag both">Confluent + Databricks</span>';
-}
 
 function renderAll() {
   const grid = document.getElementById('partners-grid');
@@ -162,17 +137,15 @@ function renderAll() {
   activeCard = null;
   grid.innerHTML = '';
 
-  const filtered = partners.filter(p => {
-    const matchFilter = currentFilter === 'all' || p.ecosystem === currentFilter;
-    const matchSearch = p.name.toLowerCase().includes(currentSearch.toLowerCase()) ||
-                        p.category.toLowerCase().includes(currentSearch.toLowerCase());
-    return matchFilter && matchSearch;
-  });
+  const filtered = partners.filter(p =>
+    p.name.toLowerCase().includes(currentSearch.toLowerCase()) ||
+    p.category.toLowerCase().includes(currentSearch.toLowerCase())
+  );
 
   meta.textContent = filtered.length + ' partner' + (filtered.length !== 1 ? 's' : '');
 
   if (filtered.length === 0) {
-    grid.innerHTML = '<div class="empty-state">No partners found. Try adjusting your search or filter.</div>';
+    grid.innerHTML = '<div class="empty-state">No partners found.</div>';
     return;
   }
 
@@ -184,7 +157,6 @@ function renderAll() {
         <span class="partner-name">${partner.name}</span>
         <div class="partner-tags">
           <span class="tag">${partner.category}</span>
-          ${ecosystemLabel(partner.ecosystem)}
           <span class="expand-icon">+</span>
         </div>
       </div>
@@ -210,14 +182,14 @@ async function toggleCard(card, partner) {
   if (activeCard) activeCard.classList.remove('active');
   card.classList.add('active');
   activeCard = card;
-  const cacheKey = partner.name + ':' + partner.ecosystem;
+  const cacheKey = partner.name;
   if (cache[cacheKey]) { renderContent(card, cache[cacheKey]); return; }
   await fetchIntel(card, partner, cacheKey);
 }
 
 async function fetchIntel(card, partner, cacheKey) {
-  const ecoLabel = partner.ecosystem === 'both' ? 'Confluent and Databricks' : (partner.ecosystem === 'confluent' ? 'Confluent' : 'Databricks');
-  const prompt = `You are a B2B partnership intelligence assistant.\n\nContext about Condense by Zeliot:\n${CONDENSE_CONTEXT}\n\nTask: Provide two things about ${partner.name} as a partner in the ${ecoLabel} ecosystem:\n\n1. PARTNERSHIP_OVERVIEW: In 3-4 sentences, explain what the ${ecoLabel} + ${partner.name} partnership is about. What do they jointly offer? Who is the target customer? What is the integration or go-to-market angle?\n\n2. APPROACH_STRATEGY: In 3-4 sentences, give a specific, actionable strategy for how the Head of Partnerships at Zeliot should approach ${partner.name} to position Condense as complementary. What angle, what pain point, what hook?\n\nRespond ONLY in this JSON format, no markdown, no backticks:\n{"overview": "...", "strategy": "..."}`;
+  const contextNote = partner.context ? `Additional context: ${partner.context}.` : '';
+  const prompt = `You are a B2B partnership intelligence assistant.\n\nContext about Condense by Zeliot:\n${CONDENSE_CONTEXT}\n\n${contextNote}\n\nTask: Provide two things about ${partner.name} (category: ${partner.category}):\n\n1. PARTNERSHIP_OVERVIEW: In 3-4 sentences, explain what ${partner.name} does and how they typically partner with data infrastructure platforms. Who is the target customer? What is the integration or go-to-market angle?\n\n2. APPROACH_STRATEGY: In 3-4 sentences, give a specific, actionable strategy for how the Head of Partnerships at Zeliot should approach ${partner.name} to position Condense as complementary. What angle, what pain point, what hook?\n\nRespond ONLY in this JSON format, no markdown, no backticks:\n{"overview": "...", "strategy": "..."}`;
   try {
     const response = await fetch("/api/chat", {
       method: "POST",
@@ -243,23 +215,11 @@ function renderError(card) {
   card.querySelector('.approach-block').innerHTML = msg;
 }
 
-// Filters
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentFilter = btn.dataset.filter;
-    renderAll();
-  });
-});
-
-// Search
 document.getElementById('search').addEventListener('input', e => {
   currentSearch = e.target.value;
   renderAll();
 });
 
-// Modal
 document.getElementById('openModal').addEventListener('click', () => {
   document.getElementById('modal').classList.add('open');
 });
@@ -269,11 +229,12 @@ document.getElementById('closeModal').addEventListener('click', () => {
 document.getElementById('confirmAdd').addEventListener('click', () => {
   const name = document.getElementById('new-name').value.trim();
   const category = document.getElementById('new-category').value.trim();
-  const ecosystem = document.getElementById('new-ecosystem').value;
+  const context = document.getElementById('new-ecosystem').value.trim();
   if (!name) return;
-  partners.unshift({ name, category: category || 'Partner', ecosystem });
+  partners.unshift({ name, category: category || 'Partner', context });
   document.getElementById('new-name').value = '';
   document.getElementById('new-category').value = '';
+  document.getElementById('new-ecosystem').value = '';
   document.getElementById('modal').classList.remove('open');
   renderAll();
 });
