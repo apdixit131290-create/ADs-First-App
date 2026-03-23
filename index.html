@@ -160,7 +160,7 @@ async function fetchIntel(card, platform, partnerName, cacheKey) {
   const platformLabel = platform === 'confluent' ? 'Confluent' : 'Databricks';
   const prompt = `You are a B2B partnership intelligence assistant.\n\nContext about Condense by Zeliot:\n${CONDENSE_CONTEXT}\n\nTask: Provide two things about the partnership between ${platformLabel} and ${partnerName}:\n\n1. PARTNERSHIP_OVERVIEW: In 3-4 sentences, explain what the ${platformLabel} + ${partnerName} partnership is about. What do they jointly offer? Who is the target customer? What is the integration or go-to-market angle?\n\n2. APPROACH_STRATEGY: In 3-4 sentences, give a specific, actionable strategy for how the Head of Partnerships at Zeliot should approach ${partnerName} (via their ${platformLabel} partnership team or directly) to position Condense as complementary. What angle, what pain point, what hook?\n\nRespond ONLY in this JSON format, no markdown, no backticks:\n{"overview": "...", "strategy": "..."}`;
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000, messages: [{ role: "user", content: prompt }] })
